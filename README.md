@@ -1,5 +1,5 @@
-# apk-manager
-decompile, recompile, sign, and install apk files
+# apk-manager for Windows
+decompile, recompile, sign, and install apk files on Windows PCs.
 
 This Project is incomplete. More features are coming and more bugs will be fixed.
 
