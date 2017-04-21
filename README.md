@@ -1,10 +1,12 @@
 # apk-manager for Windows
-decompile, recompile, sign, and install apk files on Windows PCs.
+## decompile, recompile, sign, and install apk files on Windows PCs.
 
-This Project is incomplete. More features are coming and more bugs will be fixed.
+### This Project is incomplete. More features are coming and more bugs will be fixed.
 
-All files in ./Bin are used from the Android Development kit
+All files in ./Bin are used from the Android Development kit. Please view the Android developement kit license.
 
-Currently, Admin.vbs does not properly work.
+### Change log
+#### A change log has not been added yet. We are still on our first commit
 
-A Complete Description will be added when we reach alpha stage
+### About APK-Manager
+A description will be added in the future
