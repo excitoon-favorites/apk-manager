@@ -213,29 +213,11 @@ echo The Install was complete.
 pause
 goto :eof
 :help
-:: help. This is the same as HelpDoc.txt
-:: In fact, I may just have this section rely on HelpDoc by just printing it's contents. This would make for easier maintaining
-echo %0 Help
-echo.
-echo Usage:
-echo       %0 [action] [file or path]
-echo.
-echo.
-echo Actions
-echo         compile           Compiles, aligns, and signs an APK file from a source folder.
-echo         decomile          Decompiles an apk file. Must argue valid APK file.
-echo         help              Displays this page
-echo         verify            Verifies that there are no file conflicts, everything is installed properly, and that the run in path contains no spaces. Does not require a file or path, as it only checks internal settings.
-echo         install           Install an APK file to a connected device. This method uses ADB debugging, so you must have it enabled on your device.
-echo         install-system    Installs %0 to the system to be used in any location.
-echo.
-echo File or Path 
-echo              Use path when using compile action. Path contains the assets and code of the Android App.
-echo              Use file when using decomile action. This must be a valid APK file.
-echo.
-echo.
-echo Additional external commands
-if exist "apk-manager-debug.bat" (
-    echo apk-manager-debug                   Launches %0 in debug mode. All parameters and options are the same, but all output by apk-manager are logged in apk-manager_debug.txt
+if not exist "helpdoc.txt" (
+    echo The help documentary does not appear to be installed.
+	echo Error: HelpDoc.txt is missing
+	echo You can view and download the help docs from Github at https://www.gitub.com/jordanbancino/apk-manager
+	goto :eof
 )
+type helpdoc.txt
 goto :eof
