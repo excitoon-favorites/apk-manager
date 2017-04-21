@@ -9,7 +9,6 @@ if "%1"=="help" goto help
 if "%1"=="about" goto about
 if "%1"=="install" goto install
 if "%1"=="devices" goto chkcon
-if "%1"=="install-system" goto sysinstall
 echo That is not valid input.
 echo For help, use %0 help
 goto :eof
@@ -178,40 +177,6 @@ echo.
 echo Operation Completed.
 goto :eof
 
-:sysinstall
-:: installs the program to the system, so it can be used from any directory
-:: while a nice feature, it currenty fails to recognize it's name.
-:: This whole section may be removed as a feature, because it is not nessesary
-echo Checking for Administrator...
-NET SESSION >nul 2>&1
-IF %ERRORLEVEL% EQU 0 (
-    ECHO Admin Detected.
-) ELSE (
-    echo Not Run as Admin.
-    echo Attempting to obtain Admin Access...
-    admin.vbs
-	goto :eof
-)
-echo Verifying File Integrity...
-echo.
-set fromsys=True
-goto verify
-echo.
-:sysinstallnext
-:: after verification is passed, we can begin installing the files to their places
-echo Making Directory...
-mkdir %userprofile%\apk-manager
-echo Copying  Config Files...
-copy *.* "%userprofile%\apk-manager\"
-echo Copying Binaries...
-mkdir "%userprofile%\apk-manager\Bin"
-copy ".\Bin\*.*" "%userprofile%\apk-manager\Bin\"
-echo Installing to System...
-copy apk-manager_.bat "%systemdrive%\Windows\apk-manager.bat"
-echo.
-echo The Install was complete.
-pause
-goto :eof
 :help
 if not exist "helpdoc.txt" (
     echo The help documentary does not appear to be installed.
