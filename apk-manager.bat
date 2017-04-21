@@ -74,6 +74,9 @@ if "%1"=="compile" goto compile
 if "%fromsys%"=="True" goto sysinstallnext
 :decompile
 :: begin the decompile proccess
+:: make sure we are working with a APK file 
+if not "%2"=="*.bat" echo That's not an APK file! && goto :eof
+:: make sure it exists
 if not exist "%2" echo The APK file specified does not exist. && goto :eof
 echo Installing Framework to APK...
 java -jar .\Bin\apktool.jar if %2
