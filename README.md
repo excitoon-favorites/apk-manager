@@ -6,7 +6,7 @@
 All files in ./Bin are used from the Android Development kit. Please view the Android developement kit license.
 
 ### Change log
-#### You can find our change log [Here](./changes.md)
+#### You can find our change log [Here](https://github.com/jordanbancino/apk-manager/blob/master/Changes.md)
 
 ### About APK-Manager
 A description will be added in the future
