@@ -1,6 +1,6 @@
 # APK-Manager Change Log
 
-## Update 4/21/17
+## Update 4/21/17 5:25 PM
 - Main executable now relies on Helpdoc.txt in the same directory
 
 ## Issue solved! 
