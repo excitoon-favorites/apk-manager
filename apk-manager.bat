@@ -1,5 +1,5 @@
 @echo off
-:: Param Check 
+:: Verify The parameters
 :paramchk
 if "%1"=="" echo Missing Parameters. && echo For help, use %0 help. && goto :eof
 if "%1"=="verify" goto verify
@@ -13,7 +13,12 @@ if "%1"=="install-system" goto sysinstall
 echo That is not valid input.
 echo For help, use %0 help
 goto :eof
+:: verify everything is in the right place.
+:: APK-Manage cannot work properly without these files
 :verify
+:: This block was an expiriment that thew errors, so for now, it is not executed.
+:: it will verify that the name has not changed
+goto continue
 echo Verifying file name...
 if "%0"=="apk-manager" goto continue
 if "%0"=="apk-manager.bat" goto continue
@@ -25,6 +30,7 @@ set extbat=%ext:~0,-1%
 echo %extbat%
 goto :eof
 :continue
+:: Check for the existance of all external resources.
 echo Verifying Run Path...
 for /f "tokens=2" %%a in ("%cd%") do (
     echo Error. The path you are running %0 from contains spaces.
@@ -67,6 +73,7 @@ if "%1"=="decompile" goto decompile
 if "%1"=="compile" goto compile
 if "%fromsys%"=="True" goto sysinstallnext
 :decompile
+:: begin the decompile proccess
 if not exist "%2" echo The APK file specified does not exist. && goto :eof
 echo Installing Framework to APK...
 java -jar .\Bin\apktool.jar if %2
@@ -79,6 +86,7 @@ echo The APK has been decompiled.
 goto :eof
 
 :compile
+:: compile an apk from source folder 
 if not exist "%2" echo That source folder doesn't exist. && goto :eof
 echo Checking for potential file collisions...
 if exist "compiled.apk" (
@@ -121,10 +129,13 @@ echo The APK Was Compiled.
 goto :eof
 
 :comfail
+:: at this point some components are missing, so operation cannot continue
 echo The required components were not found in .\Bin
 goto :eof
 
 :about
+:: now that I look back, I'm not sure this section is nessesary.
+:: it may be eliminated completly in future commits
 echo Creator: Jordan Bancino
 echo Original File name: apk-manager
 echo Current file name: %0
@@ -136,6 +147,7 @@ echo This software is unreleased. It could be unstable. Jordan Bancino is not re
 goto :eof
 
 :install
+:: using ADB, install an apk to a connected device
 if "%2"=="" echo You must specify an APK File to install. && goto :eof
 if not exist "%2" echo That APK file was not found. && goto :eof
 echo Installing APK to Connected Device...
@@ -151,6 +163,7 @@ echo -Is properly connected to the PC
 goto :eof
 
 :chkcon
+:: checks the connected devices.
 echo Checking For connected Devices...
 echo Loading Device Drivers...
 echo Starting ADB Daemon...
@@ -163,6 +176,9 @@ echo Operation Completed.
 goto :eof
 
 :sysinstall
+:: installs the program to the system, so it can be used from any directory
+:: while a nice feature, it currenty fails to recognize it's name.
+:: This whole section may be removed as a feature, because it is not nessesary
 echo Checking for Administrator...
 NET SESSION >nul 2>&1
 IF %ERRORLEVEL% EQU 0 (
@@ -179,6 +195,7 @@ set fromsys=True
 goto verify
 echo.
 :sysinstallnext
+:: after verification is passed, we can begin installing the files to their places
 echo Making Directory...
 mkdir %userprofile%\apk-manager
 echo Copying  Config Files...
@@ -193,6 +210,8 @@ echo The Install was complete.
 pause
 goto :eof
 :help
+:: help. This is the same as HelpDoc.txt
+:: In fact, I may just have this section rely on HelpDoc by just printing it's contents. This would make for easier maintaining
 echo %0 Help
 echo.
 echo Usage:
