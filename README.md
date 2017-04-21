@@ -3,7 +3,7 @@
 
 ### This Project is incomplete. More features are coming and more bugs will be fixed.
 
-All files in ./Bin are used from the Android Development kit. Please view the Android developement kit license.
+All files in ./Bin are used from the Android Development kit. Please view the [Android developement kit license](https://raw.githubusercontent.com/jordanbancino/apk-manager/master/AndroidSDKLicense.txt).
 
 ### Change log
 #### You can find our change log [Here](https://github.com/jordanbancino/apk-manager/blob/master/Changes.md)
