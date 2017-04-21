@@ -10,3 +10,7 @@ All files in ./Bin are used from the Android Development kit. Please view the An
 
 ### About APK-Manager
 APK-Manager is a series of scripts to make developing Android apps easier. Currently, this project is only availible for Windows, but porting over to Bash is something that could easily be done.
+
+### Downloads
+You can Download the offical build For Windows [Here](https://github.com/jordanbancino/apk-manager/raw/master/Downloads/apk-manager_Windows.zip)
+An Offical build for Unix does not yet exist.
