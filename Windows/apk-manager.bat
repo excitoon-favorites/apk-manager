@@ -217,6 +217,7 @@ if not exist "helpdoc.txt" (
     echo The help documentary does not appear to be installed.
 	echo Error: HelpDoc.txt is missing
 	echo You can view and download the help docs from Github at https://www.gitub.com/jordanbancino/apk-manager
+	start https://github.com/jordanbancino/apk-manager/blob/master/Windows/HelpDoc.txt
 	goto :eof
 )
 type helpdoc.txt
