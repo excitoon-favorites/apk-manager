@@ -9,6 +9,7 @@ if "%1"=="help" goto help
 if "%1"=="about" goto about
 if "%1"=="install" goto install
 if "%1"=="devices" goto chkcon
+if "%1"=="sign" goto sign
 echo That is not valid input.
 echo For help, use %0 help
 goto :eof
@@ -175,6 +176,25 @@ echo.
 .\Bin\Adb.exe devices
 echo.
 echo Operation Completed.
+goto :eof
+
+:sign
+echo Checking APK File...
+if not exist "%2" echo The Specified APK does not exist. && goto :eof
+echo Checking Tools...
+if not exist "%systemdrive%\Program Files\Java\jdk*" echo Java JDK not properly installed. && goto :eof
+set runin=%cd%
+cd /d "%systemdrive%\Program Files\Java\jdk*\"
+cd .\bin
+echo If you have not modified the keystore, then the password is "compile"
+echo If you have modified the keystore, then enter your password.
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore %runin%\Bin\signature.keystore %2 Key
+echo Wrapping up...
+cd /d %runin%
+echo Done.
+echo.
+echo.
+echo The APK file Was signed.
 goto :eof
 
 :help
