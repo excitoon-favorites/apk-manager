@@ -18,17 +18,10 @@ goto :eof
 :verify
 :: This block was an expiriment that thew errors, so for now, it is not executed.
 :: it will verify that the name has not changed
-goto continue
+
 echo Verifying file name...
-if "%0"=="apk-manager" goto continue
-if "%0"=="apk-manager.bat" goto continue
-echo The program does not have it's original name.
-goto continue
-:: check whether the .bat is on there or not
-set ext=%0
-set extbat=%ext:~0,-1%
-echo %extbat%
-goto :eof
+if "%~nx0"=="apk-manager.bat" goto continue
+echo Unfortunatly, The program cannot operate under a different name. Please rename this file to "apk-manager.bat"
 :continue
 :: Check for the existance of all external resources.
 echo Verifying Run Path...
