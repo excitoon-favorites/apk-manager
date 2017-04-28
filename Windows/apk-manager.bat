@@ -22,6 +22,7 @@ goto :eof
 echo Verifying file name...
 if "%~nx0"=="apk-manager.bat" goto continue
 echo Unfortunatly, The program cannot operate under a different name. Please rename this file to "apk-manager.bat"
+goto :eof
 :continue
 :: Check for the existance of all external resources.
 echo Verifying Run Path...
@@ -68,9 +69,19 @@ if "%fromsys%"=="True" goto sysinstallnext
 :decompile
 :: begin the decompile proccess
 :: make sure we are working with a APK file 
-if not "%2"=="*.bat" echo That's not an APK file! && goto :eof
+set tempvar=%2
+echo  Attempting Decompile of '%tempvar%'
+echo With extension '%tempvar:~-4%'
+echo Actual file name: %tempvar:~0,-4%
+if not "%tempvar:~-3%"=="apk" echo That's not an APK file! && goto :eof
 :: make sure it exists
 if not exist "%2" echo The APK file specified does not exist. && goto :eof
+:: make sure the dir to decompile to doesn't exist
+if exist "%tempvar:~0,-4%" (
+    echo The directory to decompile to already exists.
+	echo Renaming it now...
+	rename "%tempvar:~0,-4%" "%tempvar:~0,-4%-%random%"
+)
 echo Installing Framework to APK...
 java -jar .\Bin\apktool.jar if %2
 echo Decompiling APK...
