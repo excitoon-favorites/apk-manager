@@ -5,8 +5,6 @@
 
 All files in ./Bin are used from the Android Development kit. Please view the [Android developement kit license](https://raw.githubusercontent.com/jordanbancino/apk-manager/master/AndroidSDKLicense.txt).
 
-### Change log
-#### You can find our change log [Here](https://github.com/jordanbancino/apk-manager/blob/master/Changes.md)
 
 ### About APK-Manager
 APK-Manager is a series of scripts to make developing Android apps easier. Currently, this project is only availible for Windows, but porting over to Bash is something that could easily be done.
