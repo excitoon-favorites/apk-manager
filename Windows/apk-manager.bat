@@ -21,7 +21,8 @@ goto :eof
 
 echo Verifying file name...
 if "%~nx0"=="apk-manager.bat" goto continue
-echo Unfortunatly, The program cannot operate under a different name. Please rename this file to "apk-manager.bat"
+if "%~nx0"=="apk-manager.exe" goto continue
+echo Unfortunatly, The program cannot operate under a different name. Please rename this file to "apk-manager.bat", or "apk-manager.exe", Depending on which version you downloaded.
 goto :eof
 :continue
 :: Check for the existance of all external resources.
