@@ -1,1 +1,0 @@
-A Unix Version of APK-Manager has not yet been created. I am looking for contributers to port my scripts to Unix soon, otherwise I will halt progress on the Windows version to learn.
