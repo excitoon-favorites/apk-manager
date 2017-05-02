@@ -6,7 +6,16 @@
 
 managerhelp  ()
 { 
-  echo "You have officially reached Help"
+  if [ -e HelpDoc.txt ]
+    then
+      cat HelpDoc.txt
+      exit
+    else
+      echo The help documentary does not appear to be installed.
+	echo Error: HelpDoc.txt is missing
+	echo You can view and download the help docs from Github at https://www.gitub.com/jordanbancino/apk-manager
+        xdg-open https://github.com/jordanbancino/apk-manager/blob/master/Windows/HelpDoc.txt
+  fi
 } 
 
 
@@ -38,8 +47,7 @@ if [ "$1" = "compile" ]
 fi
 if [ "$1" = "help" ]
   then
-    echo "You typed 'help' "
-    echo "This is where we would go to the help block"
+    # Help
     managerhelp
     exit
 fi
