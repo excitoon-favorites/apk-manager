@@ -1,0 +1,49 @@
+#!/bin/bash
+# @echo off statement not needed in bash
+# Instead, we use what is on line one?
+
+# Functions come first. Param check is at the bottom
+
+managerhelp  ()
+{ 
+  echo "You have officially reached Help"
+} 
+
+
+# Verify The Parameters
+
+if [ $# -eq 0 ]
+  then
+    echo "Missing parameters."
+    echo "For help, use $0 help"
+    exit
+fi
+if [ "$1" = "verify" ]
+  then
+    echo "You typed 'verify' "
+    echo "This is where we would go to the Verify block"
+    exit.
+fi
+if [ "$1" = "decompile" ]
+  then
+    echo "You typed 'decompile' "
+    echo "This is where we would still go to the Verify block"
+    exit
+fi
+if [ "$1" = "compile" ]
+  then
+    echo "You typed 'verify' "
+    echo "This is where we would go to the Verify block, yet again"
+    exit
+fi
+if [ "$1" = "help" ]
+  then
+    echo "You typed 'help' "
+    echo "This is where we would go to the help block"
+    managerhelp
+    exit
+fi
+echo Dummy content
+
+
+
