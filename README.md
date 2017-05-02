@@ -1,5 +1,5 @@
-# apk-manager for Windows
-## decompile, recompile, sign, and install apk files to devices on Windows PCs.
+# apk-manager
+## decompile, recompile, sign, and install apk files to devices
 
 ### This Project is incomplete. More features are coming and more bugs will be fixed.
 
@@ -14,4 +14,4 @@ You can Download the offical build For Windows [Here](https://github.com/jordanb
 
 The installer contains both portable and system installations.
 
-An Offical build for Unix does not yet exist.
+An Offical build for Linux is in progress. 
