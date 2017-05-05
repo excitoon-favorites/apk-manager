@@ -4,7 +4,7 @@
 
 # Functions come first. Param check is at the bottom
 
-managerhelp  ()
+syntax  ()
 { 
   if [ -e HelpDoc.txt ]
     then
@@ -48,10 +48,14 @@ fi
 if [ "$1" = "help" ]
   then
     # Help
-    managerhelp
+    syntax
     exit
 fi
-echo Dummy content
+# Parameters were entered, but are not valid
+echo Invalid Parameter.
+echo Use "./apk-manager help" for availible options
+# No more to do, exit
+exit
 
 
 
