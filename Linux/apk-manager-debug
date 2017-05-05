@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -e apk-manager ]
+  then
+    ./apk-manager $1 $2 $3 | tee -a apk-manager_debug.txt
+    echo ----- >>apk-manager_debug.txt
+  else
+    echo Fatal error.
+    echo The executable 'apk-manager' is missing
+fi
+exit
