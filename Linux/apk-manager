@@ -4,7 +4,7 @@
 
 # Functions come first. Param check is at the bottom
 
-syntax  ()
+_help ()
 { 
   if [ -e HelpDoc.txt ]
     then
@@ -48,7 +48,7 @@ fi
 if [ "$1" = "help" ]
   then
     # Help
-    syntax
+    _help
     exit
 fi
 # Parameters were entered, but are not valid
