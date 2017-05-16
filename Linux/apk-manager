@@ -4,8 +4,7 @@
 
 # Functions come first. Param check is at the bottom
 
-Help ()
-{ 
+function Help { 
   if [ -e HelpDoc.txt ]
     then
       cat HelpDoc.txt
