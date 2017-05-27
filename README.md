@@ -3,8 +3,14 @@
 
 ### This Project is incomplete. More features are coming and more bugs will be fixed.
 
+### Licensing
 All files in ./Bin are used from the Android Development kit. Please view the [Android developement kit license](https://raw.githubusercontent.com/jordanbancino/apk-manager/master/AndroidSDKLicense.txt).
 
+This excludes the following: signature.keystore, tee.exe, and win32gnu.dll
+
+Tee.exe and win32gnu.dll are Licensed under the GNU General Public License version 2.0 (GPLv2). 
+
+Signature.keystore is the default signing database used by APK-Manager, which is licensed under the Apache License 2.0.
 
 ### About APK-Manager
 APK-Manager is a series of scripts to make developing Android apps easier. Currently, this project is only availible for Windows, but porting over to Bash is a work in progress.
