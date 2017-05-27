@@ -26,6 +26,7 @@ So far, we still have a couple bugs to kill, so we haven't released an offial bu
 The Windows version was developed and tested on:
 - Windows 7 (With all updates installed)
 - Windows 10 (Creators Update)
+
 The (Very Incomplete) Linux version was developed and tested on:
 - Ubuntu 16.04.2
 - Ubuntu 17.04
