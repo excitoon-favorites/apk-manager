@@ -10,6 +10,7 @@ if "%1"=="about" goto about
 if "%1"=="install" goto install
 if "%1"=="devices" goto chkcon
 if "%1"=="sign" goto sign
+if "%1"=="keystore" goto keystore
 echo That is not valid input.
 echo For help, use %0 help
 goto :eof
@@ -123,9 +124,21 @@ echo Signing APK...
 set runin=%cd%
 cd /d "%systemdrive%\Program Files\Java\jdk*\"
 cd .\bin
+echo Loading keystore configuration data...
+if exist "apk-manager_key-alias.config" (
+    echo Keystore configuration found.
+    echo Setting Key alias...
+    set keyalias=<apk-manager_key-alias.config
+    echo Key alias is  "%keyalias%"
+) else (
+    echo Keystore configuration not found.
+    echo Using default values...
+    set keyalias=Key
+    echo Key alias is "%keyalias%"
+)
 echo If you have not modified the keystore, then the password is "compile"
 echo If you have modified the keystore, then enter your password.
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore %runin%\Bin\signature.keystore %runin%\final.apk Key
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore %runin%\Bin\signature.keystore %runin%\final.apk %keyalias%
 echo Wrapping up...
 cd /d %runin%
 rename final.apk %2_Compiled.apk
@@ -192,18 +205,60 @@ echo Checking APK File...
 if not exist "%2" echo The Specified APK does not exist. && goto :eof
 echo Checking Tools...
 if not exist "%systemdrive%\Program Files\Java\jdk*" echo Java JDK not properly installed. && goto :eof
+echo Loading keystore configuration data...
+if exist "alias.config" (
+    echo Keystore configuration found.
+    echo Setting Key alias...
+    set keyalias=<alias.config
+    echo Key alias is  "%keyalias%"
+) else (
+    echo Keystore configuration not found.
+    echo Using default values...
+    set keyalias=Key
+    echo Key alias is "%keyalias%"
+)
 set runin=%cd%
 cd /d "%systemdrive%\Program Files\Java\jdk*\"
 cd .\bin
+
 echo If you have not modified the keystore, then the password is "compile"
 echo If you have modified the keystore, then enter your password.
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore %runin%\Bin\signature.keystore %2 Key
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore %runin%\Bin\signature.keystore %2 %keyalias%
 echo Wrapping up...
 cd /d %runin%
 echo Done.
 echo.
 echo.
 echo The APK file Was signed.
+goto :eof
+
+:keystore
+if "%2"=="" (
+    echo Please argue a keystore to use.
+    goto :eof
+)
+if not exist "%2" (
+    echo That keystore doesn't exist. Please argue a valid keystore.
+    goto :eof
+)
+:: the keystore file does exist
+echo Checking for previous backups of keystore...
+if exist ".\Bin\signature.keystore.backup" rename ".\Bin\signature.keystore.backup" ".\Bin\signature.keystore.backup%random%%random%" && echo Renaming old backup...
+echo Backing up current keystore...
+cd .\Bin && rename "signature.keystore" "signature.keystore.backup" && cd ..\
+echo Copying new keystore to .\Bin...
+copy "%2" ".\Bin\"
+echo Verifying keystore name...
+cd .\Bin && rename "%2" "signature.keystore" && cd ..\
+echo Done.
+echo Enter the Alias for the key in the set keystore. If this is incorrect, signing will fail.
+set /p "key=Alias for '%2': "
+echo Verifying inputted alias...
+if "%key%"=="" echo No alias was entered. Aborting... && goto :eof
+echo Alias is acceptable.
+echo Writing configuration files...
+echo %key% > alias.config
+echo Done. The keystore was set successfully.
 goto :eof
 
 :help
