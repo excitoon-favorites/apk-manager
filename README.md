@@ -23,6 +23,14 @@ NOTE! This binary is over a month old! For a fresh version, use the executable s
 An Offical build for Linux is in progress. 
 
 ### APK-Manager Requirements:
+A Windows PC running:
+- Windows 7
+- Windows 8
+- Windows 8.1
+- Windows 10
+
+The Windows version of Apk-Manger has not been tested on WINE on Linux. Please, try it and let me know how it works.
+
 In order to run properly, apk-manager requires the following components to be installed:
 - Java jdk (Tested on V8 build 121)
 - Java jre (Tested on V8 build 121)
@@ -46,3 +54,12 @@ If you want to contribute, take a look at the issues page. All those issues won'
 Spot something odd that isn't on the issues page? Don't be afraid to submit a new issue. Then, if you think you can fix it, by all means, go for it! Just follow the directions above.
 
 If you have questions, feel free to contact me at factshackstips@gmail.com
+
+What I need (and what you can contribute):
+- Fixed Issues.
+- Licenses. If you can find the licenses for all other assets used in this project, that would be great.
+- A Build for Linux (Main Target: Ubuntu)
+- A Build for Mac (Long Term Project)
+- Compatability tests for Windows Vista and Windows XP 
+
+If you can offer any of this, please do. I would like to continue to develop Apk-Manager
