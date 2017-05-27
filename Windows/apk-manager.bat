@@ -53,8 +53,8 @@ echo - apktool.jar
 if not exist ".\Bin\apktool.jar" goto comfail
 echo - keytool.exe 
 if not exist ".\Bin\keytool.exe" goto comfail
-echo - sign.keystore
-if not exist ".\Bin\Sign.keystore" goto comfail
+echo - signature.keystore
+if not exist ".\Bin\Signature.keystore" goto comfail
 echo - zipalign.exe 
 if not exist ".\Bin\zipalign.exe" goto comfail
 echo.
