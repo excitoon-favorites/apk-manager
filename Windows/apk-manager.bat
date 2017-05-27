@@ -233,6 +233,8 @@ echo The APK file Was signed.
 goto :eof
 
 :keystore
+echo WARNING: This feature is not fully functional. Use only if developing this feature further
+echo.
 if "%2"=="" (
     echo Please argue a keystore to use.
     goto :eof
