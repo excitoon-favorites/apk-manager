@@ -4,8 +4,7 @@
 
 # Functions come first. Param check is at the bottom
 
-_help ()
-{ 
+function Help { 
   if [ -e HelpDoc.txt ]
     then
       cat HelpDoc.txt
@@ -20,41 +19,17 @@ _help ()
 
 
 # Verify The Parameters
-
-if [ $# -eq 0 ]
-  then
-    echo "Missing parameters."
-    echo "For help, use $0 help"
-    exit
-fi
-if [ "$1" = "verify" ]
-  then
-    echo "You typed 'verify' "
-    echo "This is where we would go to the Verify block"
-    exit.
-fi
-if [ "$1" = "decompile" ]
-  then
-    echo "You typed 'decompile' "
-    echo "This is where we would still go to the Verify block"
-    exit
-fi
-if [ "$1" = "compile" ]
-  then
-    echo "You typed 'verify' "
-    echo "This is where we would go to the Verify block, yet again"
-    exit
-fi
-if [ "$1" = "help" ]
-  then
-    # Help
-    _help
-    exit
-fi
-# Parameters were entered, but are not valid
-echo Invalid Parameter.
-echo Use "./apk-manager help" for availible options
-# No more to do, exit
+if [ $# -eq 0 ];then echo "Missing Arguments." && echo "For help, use $0 help" && exit; fi
+if [ "$1" = "verify" ];then Verify; fi
+if [ "$1" = "decompile" ];then Verify; fi
+if [ "$1" = "compile" ];then Verify; fi
+if [ "$1" = "help" ];then Help; fi
+if [ "$1" = "about" ];then About; fi
+if [ "$1" = "install" ];then Install; fi
+if [ "$1" = "devices" ];then ChkCon; fi
+if [ "$1" = "sign" ];then Sign; fi
+echo "That is not valid input"
+echo "For help, use $0 help"
 exit
 
 

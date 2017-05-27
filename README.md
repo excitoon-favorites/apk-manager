@@ -15,3 +15,8 @@ You can Download the offical build For Windows [Here](https://github.com/jordanb
 The installer contains both portable and system installations.
 
 An Offical build for Linux is in progress. 
+
+### APK-Manager Requirements:
+In order to run properly, apk-manager requires the following components to be installed:
+- Java jdk (Tested on V8 build 121)
+- Java jre (Tested on V8 build 121)
