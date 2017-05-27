@@ -57,6 +57,10 @@ echo - signature.keystore
 if not exist ".\Bin\Signature.keystore" goto comfail
 echo - zipalign.exe 
 if not exist ".\Bin\zipalign.exe" goto comfail
+echo - tee.exe 
+if not exist ".\Bin\tee.exe" goto comfail
+echo - win32gnu.dll
+if not exist ".\Bin\win32gnu.dll" goto comfail
 echo.
 :: additional param check, to see where we go next
 if "%1"=="verify" (
