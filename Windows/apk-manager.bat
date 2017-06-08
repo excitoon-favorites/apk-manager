@@ -8,7 +8,7 @@ if "%1"=="compile" goto verify
 if "%1"=="help" goto help
 if "%1"=="about" goto about
 if "%1"=="install" goto install
-if "%1"=="devices" goto chkcon
+if "%1"=="devices" goto devices
 if "%1"=="sign" goto sign
 if "%1"=="keystore" goto keystore
 echo That is not valid input.
@@ -112,7 +112,13 @@ if %PROCESSOR_ARCHITECTURE%==x86 (
     set Java="%Java64%"
 )
 echo The Java location was set to %Java%
-exit /b
+echo Verification complete. All components are configured properly
+if "%1"=="verify" (
+    goto :eof
+) else (
+    echo Proceeding with operation : %1 ...
+    goto %1
+)
 
 :decompile
 Call :verify
@@ -176,6 +182,11 @@ echo If you have modified the keystore, then enter your password.
 jarsigner.exe -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore %RUNIN%\Bin\signature.keystore %RUNIN%\final.apk %KEYSTOREALIAS%
 echo Wrapping up...
 cd /d %RUNIN%
+if exist "%2_Compiled.apk" (
+    echo The compiled apk file already exists.
+    echo Renaming old compiled apk...
+    rename "%2_Compiled.apk" "%2_Compiled_Old_%random%%random%.apk"
+)
 rename final.apk %2_Compiled.apk
 if "%colfin%"=="1" (
     echo Fixing file names...
@@ -221,7 +232,7 @@ echo -Has ADB Debugging on in it's settings
 echo -Is properly connected to the PC
 goto :eof
 
-:chkcon
+:devices
 call :verify
 :: checks the connected devices.
 echo Checking For connected Devices...
