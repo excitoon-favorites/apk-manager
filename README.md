@@ -16,11 +16,8 @@ Signature.keystore is the default signing database used by APK-Manager, which is
 APK-Manager is a series of scripts to make developing Android apps easier. Currently, this project is only availible for Windows, but porting over to Bash is a work in progress.
 
 ### Downloads
-You can Download the offical build For Windows [Here](https://github.com/jordanbancino/apk-manager/raw/master/Downloads/Binaries/apk-manager_Install.exe)
-The installer contains both portable and system installations.
-NOTE! This binary is over a month old! For a fresh version, use the executable source code.
+No official downloads are availible right now. Check our progress at the [First Release Milestone](https://github.com/jordanbancino/apk-manager/milestone/1)
 
-An Offical build for Linux is in progress. 
 
 ### APK-Manager Requirements:
 A Windows PC running:
