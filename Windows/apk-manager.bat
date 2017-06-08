@@ -63,16 +63,59 @@ if not exist ".\Bin\tee.exe" goto comfail
 echo - win32gnu.dll
 if not exist ".\Bin\win32gnu.dll" goto comfail
 echo.
-:: additional param check, to see where we go next
-if "%1"=="verify" (
-    echo.
-    echo Verify completed. %0 was set up properly.
+
+
+
+echo.
+echo Loading Configurations...
+if exist "apk-manager_config.bat" (
+    echo Configuration file exists.
+    echo Loading config data...
+    Call apk-manager_config.bat
+    echo Configurations Loaded.
+) else (
+    echo The configuration file "apk-manager_config.bat" does not exist.
+    echo Aborting...
     goto :eof
 )
-if "%1"=="decompile" goto decompile
-if "%1"=="compile" goto compile
-if "%fromsys%"=="True" goto sysinstallnext
+echo.
+echo Verifying Configurations...
+echo Powershell : %PowerShell%
+echo Java (32-bit) : %Java32%
+echo Java (64-bit) : %Java64%
+echo Java Developement Kit : %JDK%
+echo.
+if "%PowerShell%"=="" goto configfail
+if "%Java32%"=="" goto configfail
+if "%Java64%"=="" goto configfail
+if "%JDK%"=="" goto configfail
+
+if "%KEYALIAS"=="" goto configfail
+if "%RUNIN%"=="" set RUNIN=%cd%
+goto verifynext
+
+:configfail
+echo The configurations were not set up properly.
+echo Aborting...
+goto :eof
+
+:verifynext
+echo All Components are Verified and ready for use.
+echo Checking OS Version...
+if %PROCESSOR_ARCHITECTURE%==x86 (
+    echo OS Version is : 32 bit
+    echo Configuring Java...
+    set Java="%Java32%"
+) else (
+    echo OS Version is : 64 bit
+    echo Configuring Java...
+    set Java="%Java64%"
+)
+echo The Java location was set to %Java%
+exit /b
+
 :decompile
+Call :verify
 :: begin the decompile proccess
 :: make sure we are working with a APK file 
 set tempvar=%2
@@ -89,9 +132,11 @@ if exist "%tempvar:~0,-4%" (
 	rename "%tempvar:~0,-4%" "%tempvar:~0,-4%-%random%"
 )
 echo Installing Framework to APK...
-java -jar .\Bin\apktool.jar if %2
+cd %Java% && cd .\bin
+Java.exe -jar %RUNIN%\Bin\apktool.jar if %RUNIN%\%2
 echo Decompiling APK...
-java -jar .\Bin\apktool.jar d %2
+Java.exe -jar %RUNIN%\Bin\apktool.jar d %RUNIN%\%2 -o %RUNIN%\%tempvar:~0,-4%
+cd %RUNIN%
 echo.
 echo.
 echo.
@@ -99,6 +144,7 @@ echo The APK has been decompiled.
 goto :eof
 
 :compile
+Call :verify
 :: compile an apk from source folder 
 if not exist "%2" echo That source folder doesn't exist. && goto :eof
 echo Checking for potential file collisions...
@@ -113,34 +159,23 @@ if exist "final.apk" (
     set colfin=1
 )
 echo Building APK from Source Folder...
-java -jar .\Bin\apktool.jar b %2
+cd %Java% && cd .\bin
+java.exe -jar %RUNIN%\Bin\apktool.jar b %RUNIN%\%2 -o %RUNIN%\%2\dist\%2.apk
 echo Extracting APK from Compiled Location...
+cd %RUNIN%
 move .\%2\dist\%2.apk Compiled.apk
 echo Aligning the APK...
 .\Bin\zipalign -v 4 Compiled.apk Final.apk
 echo Cleaning up...
 del compiled.apk
 echo Signing APK...
-set runin=%cd%
-cd /d "%systemdrive%\Program Files\Java\jdk*\"
-cd .\bin
-echo Loading keystore configuration data...
-if exist "apk-manager_key-alias.config" (
-    echo Keystore configuration found.
-    echo Setting Key alias...
-    set keyalias=<apk-manager_key-alias.config
-    echo Key alias is  "%keyalias%"
-) else (
-    echo Keystore configuration not found.
-    echo Using default values...
-    set keyalias=Key
-    echo Key alias is "%keyalias%"
-)
+cd %JDK% && cd .\bin
+echo Keystore Alias : %KEYSTOREALIAS%
 echo If you have not modified the keystore, then the password is "compile"
 echo If you have modified the keystore, then enter your password.
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore %runin%\Bin\signature.keystore %runin%\final.apk %keyalias%
+jarsigner.exe -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore %RUNIN%\Bin\signature.keystore %RUNIN%\final.apk %KEYSTOREALIAS%
 echo Wrapping up...
-cd /d %runin%
+cd /d %RUNIN%
 rename final.apk %2_Compiled.apk
 if "%colfin%"=="1" (
     echo Fixing file names...
@@ -164,14 +199,13 @@ goto :eof
 echo Creator: Jordan Bancino
 echo Original File name: apk-manager
 echo Current file name: %0
-if not "%0"=="apk-manager" (
-    echo The name of this file does not match it's intended name. It may have been modified. Do not run this program. Download the official version from Jordan Bancino.
-)
+echo.
 echo Version: 1.0 (Unreleased)
 echo This software is unreleased. It could be unstable. Jordan Bancino is not responsible for any damage to your machine by use of this program
 goto :eof
 
 :install
+Call :verify
 :: using ADB, install an apk to a connected device
 if "%2"=="" echo You must specify an APK File to install. && goto :eof
 if not exist "%2" echo That APK file was not found. && goto :eof
@@ -188,6 +222,7 @@ echo -Is properly connected to the PC
 goto :eof
 
 :chkcon
+call :verify
 :: checks the connected devices.
 echo Checking For connected Devices...
 echo Loading Device Drivers...
@@ -201,39 +236,27 @@ echo Operation Completed.
 goto :eof
 
 :sign
+call :verify
 echo Checking APK File...
 if not exist "%2" echo The Specified APK does not exist. && goto :eof
 echo Checking Tools...
-if not exist "%systemdrive%\Program Files\Java\jdk*" echo Java JDK not properly installed. && goto :eof
-echo Loading keystore configuration data...
-if exist "alias.config" (
-    echo Keystore configuration found.
-    echo Setting Key alias...
-    set keyalias=<alias.config
-    echo Key alias is  "%keyalias%"
-) else (
-    echo Keystore configuration not found.
-    echo Using default values...
-    set keyalias=Key
-    echo Key alias is "%keyalias%"
-)
-set runin=%cd%
-cd /d "%systemdrive%\Program Files\Java\jdk*\"
-cd .\bin
-
+Call :Verify
+cd %JDK% && cd .\bin
 echo If you have not modified the keystore, then the password is "compile"
 echo If you have modified the keystore, then enter your password.
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore %runin%\Bin\signature.keystore %2 %keyalias%
+jarsigner.exe -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore %RUNIN%\Bin\signature.keystore %RUNIN%\final.apk %KEYSTOREALIAS%
 echo Wrapping up...
-cd /d %runin%
+cd /d %RUNIN%
 echo Done.
 echo.
 echo.
 echo The APK file Was signed.
 goto :eof
 
+
+:: CUSTOM KEYSTORE SUPPORT
 :keystore
-echo WARNING: This feature is not fully functional. Use only if developing this feature further
+call :verify
 echo.
 if "%2"=="" (
     echo Please argue a keystore to use.
@@ -253,14 +276,8 @@ copy "%2" ".\Bin\"
 echo Verifying keystore name...
 cd .\Bin && rename "%2" "signature.keystore" && cd ..\
 echo Done.
-echo Enter the Alias for the key in the set keystore. If this is incorrect, signing will fail.
-set /p "key=Alias for '%2': "
-echo Verifying inputted alias...
-if "%key%"=="" echo No alias was entered. Aborting... && goto :eof
-echo Alias is acceptable.
-echo Writing configuration files...
-echo %key% > alias.config
-echo Done. The keystore was set successfully.
+echo Please enter your Keystore's alias in "apk-manager_config.bat"
+notepad apk-manager_config.bat
 goto :eof
 
 :help

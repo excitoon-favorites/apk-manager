@@ -5,10 +5,11 @@ Actions
         compile           Compiles, aligns, and signs an APK file from a source folder.
         decomile          Decompiles an apk file. Must argue valid APK file.
         help              Displays this page
-        verify            Verifies that there are no file conflicts, everything is installed properly, and that the run in       path contains no spaces. Does not require a file or path, as it only checks internal settings.
+        verify            Verifies that there are no file conflicts, everything is installed properly, and that the run in path contains no spaces. Does not require a file or path, as it only checks internal settings.
         install           Install an APK file to a connected device. This method uses ADB debugging, so you must have it enabled on your device.
         install-system    Installs apk-manager to the system to be used in any location.
-	sign              Sign an apk file with a signature located in ./bin/signature.keystore. You can replace this file, but make sure the alias is "Key". Otherwise, modify the source code with your alias name. 
+	sign              Sign an apk file with a signature.
+        keystore          Use a custom signing keystore in the place of the default one.
 
 File or Path 
              Use path when using compile action. Path contains the assets and code of the Android App.
