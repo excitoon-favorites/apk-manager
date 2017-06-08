@@ -42,8 +42,8 @@ The (Very Incomplete) Linux version was developed and tested on:
 - Ubuntu 16.04.2
 - Ubuntu 17.04
 
-The last Windows binary was built over a month ago, and since then, Apk-Manager has changed a lot. Do not download this binary. Use the source code (as it is executable on a Windows computer) for the latest updates and bug fixes.
-There are also many features lacking, such as a GUI. This program is not intended for use by the general public YET. We do plan on making the program much more feature-rich, and easier to use, along with automation support, to make it easier for non-developers. 
+
+There are many features lacking, such as a GUI. This program is not intended for use by the general public YET. We do plan on making the program much more feature-rich, and easier to use, along with automation support, to make it easier for non-developers. 
 
 ### Contribute
 If you want to contribute, take a look at the issues page. All those issues won't fix themselves! Pick an issue that you want to work on. Fork my repository, then make your changes. Please make sure you have tested all your changes and that everything works properly. When everything looks good, submit a pull request. It will be reviewed, and if the issue is properly solved, the request will be merged.
