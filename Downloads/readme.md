@@ -2,11 +2,11 @@
 
 ### NOTICE: APK Manager has not been released yet. Some links will not work until APK Manager is released ###
 
-| Downloads |
-----------|----------------------|
-| Windows | [Latest version]()   |
-| Linux   | No Version availible |
-| MacOS   | No Version availible |
+| Platform | Download             |
+-----------|----------------------|
+| Windows  | [Latest version]()   |
+| Linux    | No Version availible |
+| MacOS    | No Version availible |
 
 ## Previous Releases
 
