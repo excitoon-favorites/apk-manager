@@ -4,16 +4,16 @@
 
 
 ## Binaries ##
-| Platform | Download                      |
-|----------|-------------------------------|
-| Windows  | No Stable Version Availible   |
-| Linux    | No Stable Version availible   |
-| MacOS    | No Version availible          |
+| Platform | Download                      | Released | Next Update    |
+|----------|-------------------------------|----------|----------------|
+| Windows  | No Stable Version Availible   | Never    | August 9, 2017 |
+| Linux    | No Stable Version availible   | Never    | Unknown        |
+| MacOS    | No Version availible          | Never    | Not planned    |
 
 
 ## Source Code ##
-| Package                             | Download |
-|-------------------------------------|----------|
-| All Source code (Entire Repository) | [Latest](https://github.com/jordanbancino/apk-manager/archive/master.zip) |
+| Package                             | Download | Released |
+|-------------------------------------|----------|----------|
+| All Source code (Entire Repository) | [Latest](https://github.com/jordanbancino/apk-manager/archive/master.zip) | Every Day |
 
-More Packages coming soon.
+Individual platform downloads coming soon
