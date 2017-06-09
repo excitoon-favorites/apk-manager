@@ -1,12 +1,12 @@
 # Download APK Manager #
 
-### NOTICE: APK Manager has not been released yet. Some links will not work until APK Manager is released ###
+### NOTICE: APK Manager has not been released yet. ###
 
-| Platform | Download             |
-|----------|----------------------|
-| Windows  | [Latest version]()   |
-| Linux    | No Version availible |
-| MacOS    | No Version availible |
+| Platform | Download                      |
+|----------|-------------------------------|
+| Windows  | No Stable Version Availible   |
+| Linux    | No Stable Version availible   |
+| MacOS    | No Version availible          |
 
 ## Previous Releases
 
