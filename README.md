@@ -3,6 +3,9 @@
 
 ### This Project is incomplete. More features are coming and more bugs will be fixed.
 
+### Downloads
+Download APK Manager for your platform [Here](https://github.com/jordanbancino/apk-manager/tree/master/Downloads)
+
 ### Licensing
 All files in ./Bin are used from the Android Development kit. Please view the [Android developement kit license](https://raw.githubusercontent.com/jordanbancino/apk-manager/master/AndroidSDKLicense.txt).
 
@@ -14,9 +17,6 @@ Signature.keystore is the default signing database used by APK-Manager, which is
 
 ### About APK-Manager
 APK-Manager is a series of scripts to make developing Android apps easier. Currently, this project is only availible for Windows, but porting over to Bash is a work in progress.
-
-### Downloads
-Download APK Manager for your platform [Here](https://github.com/jordanbancino/apk-manager/tree/master/Downloads)
 
 
 ### APK-Manager Requirements:
