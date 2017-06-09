@@ -6,7 +6,7 @@ if not exist "apk-manager.bat" (
     goto Fail
 )
 
-apk-manager.bat %1 %2 %3 | .\Bin\tee.exe apk-manager_debug.txt
+apk-manager.bat %* | .\Bin\tee.exe apk-manager_debug.txt
 echo. >> apk-manager_debug.txt
 goto :eof
 
