@@ -16,6 +16,7 @@ Except the following:
 These are part of the [WinBash Project](https://sourceforge.net/projects/win-bash/) and are licensed under the [GNU General Public License v2.0](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html).
 
 - Signature.keystore
+
 A Keystore created by Jordan Bancino, Licensed under the Apache 2.0 License, used for signing compiled APK-Files. This Keystore is to be used ONLY by APK-Manager for signing compiled APK-Files. If you wish to create your own keystore, use the Android app [ZipSigner](https://play.google.com/store/apps/details?id=kellinwood.zipsigner2)
 
 
@@ -63,9 +64,8 @@ If you have questions, feel free to contact me at factshackstips@gmail.com
 
 What I need (and what you can contribute):
 - Fixed Issues.
-- Licenses. If you can find the licenses for all other assets used in this project, that would be great.
 - A Build for Linux (Main Target: Ubuntu)
 - A Build for Mac (Long Term Project)
-- Compatability tests for Windows Vista and Windows XP 
+- A Website. This will be hosted in this repository. I prefer following the Google Material Guidlines. Templates and examples availible at [GetMDL.io](https://getmdl.io)
 
 If you can offer any of this, please do. I would like to continue to develop Apk-Manager
