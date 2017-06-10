@@ -67,5 +67,5 @@ What I need (and what you can contribute):
 - A Build for Linux (Main Target: Ubuntu)
 - A Build for Mac (Long Term Project)
 - A Website. This will be hosted in this repository. I prefer following the Google Material Guidlines. Templates and examples availible at [GetMDL.io](https://getmdl.io)
-
+- Repo Wiki. This includes How-Tos, and Install Instructions.
 If you can offer any of this, please do. I would like to continue to develop Apk-Manager
