@@ -9,14 +9,23 @@ Download APK Manager for your platform [Here](https://github.com/jordanbancino/a
 ### Licensing
 All files in ./Bin are used from the Android Development kit. Please view the [Android developement kit license](https://raw.githubusercontent.com/jordanbancino/apk-manager/master/AndroidSDKLicense.txt).
 
-This excludes the following: signature.keystore, tee.exe, and win32gnu.dll
+Except the following:
+- Tee.exe
+- Win32GNU.dll
 
-Tee.exe and win32gnu.dll are Licensed under the GNU General Public License version 2.0 (GPLv2). 
+These are part of the [WinBash Project](https://sourceforge.net/projects/win-bash/) and are licensed under the [GNU General Public License v2.0](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html).
 
-Signature.keystore is the default signing database used by APK-Manager, which is licensed under the Apache License 2.0.
+- Signature.keystore
+A Keystore created by Jordan Bancino, Licensed under the Apache 2.0 License, used for signing compiled APK-Files. This Keystore is to be used ONLY by APK-Manager for signing compiled APK-Files. If you wish to create your own keystore, use the Android app [ZipSigner](https://play.google.com/store/apps/details?id=kellinwood.zipsigner2)
+
 
 ### About APK-Manager
 APK-Manager is a series of scripts to make developing Android apps easier. Currently, this project is only availible for Windows, but porting over to Bash is a work in progress.
+
+Features:
+- Decompile an APK File
+- Compile an APK File from a source folder
+- Sign an APK File (With the default signing keystore, or your own Keystore.)
 
 
 ### APK-Manager Requirements:
