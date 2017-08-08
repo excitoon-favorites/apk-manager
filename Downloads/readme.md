@@ -6,7 +6,7 @@
 ## Binaries ##
 | Platform | Download                      | Released | Next Update    |
 |----------|-------------------------------|----------|----------------|
-| Windows  | No Stable Version Availible   | Never    | August 9, 2017 |
+| Windows  | No Stable Version Availible   | Never    | Delayed        |
 | Linux    | No Stable Version availible   | Never    | Unknown        |
 | MacOS    | No Version availible          | Never    | Not planned    |
 
