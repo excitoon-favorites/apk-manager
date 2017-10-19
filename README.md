@@ -1,6 +1,9 @@
 # Apk-Manager
 ## Decompile, recompile, sign, and install apk files.
 
+## NOTICE: this project has been abandoned. Other than this notice, the repository will be left as is.
+
+
 ### This Project is incomplete. More features are coming and more bugs will be fixed.
 
 ### Downloads
